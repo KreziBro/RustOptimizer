@@ -1,0 +1,36 @@
+using System.Runtime.InteropServices;
+using Mixaill.HwInfo.D3DKMT.Helpers;
+
+namespace Mixaill.HwInfo.D3DKMT.Interop;
+
+[StructLayout(LayoutKind.Sequential, Pack = 1)]
+public struct _D3DKMT_ADAPTERTYPE
+{
+	private uint data;
+
+	public bool RenderSupported => data.IsBitSet(0);
+
+	public bool DisplaySupported => data.IsBitSet(1);
+
+	public bool SoftwareDevice => data.IsBitSet(2);
+
+	public bool PostDevice => data.IsBitSet(3);
+
+	public bool HybridDiscrete => data.IsBitSet(4);
+
+	public bool HybridIntegrated => data.IsBitSet(5);
+
+	public bool IndirectDisplayDevice => data.IsBitSet(6);
+
+	public bool Paravirtualized => data.IsBitSet(7);
+
+	public bool ACGSupported => data.IsBitSet(8);
+
+	public bool SupportSetTimingsFromVidPn => data.IsBitSet(9);
+
+	public bool Detachable => data.IsBitSet(10);
+
+	public bool ComputeOnly => data.IsBitSet(11);
+
+	public bool Prototype => data.IsBitSet(12);
+}
