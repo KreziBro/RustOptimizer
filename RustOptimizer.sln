@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RustOptimizer", "RustOptimizer.csproj", "{A2EB3C94-E4FE-4F90-8D8C-391A9FC305B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{EC6EEDE1-3D68-499E-8B8B-C565CE0E7302}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mixaill.HwInfo.D3DKMT", "Libraries\Mixaill.HwInfo.D3DKMT\Mixaill.HwInfo.D3DKMT.csproj", "{07D2CF00-AC25-4178-8EEF-A3EDF92A4988}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2EB3C94-E4FE-4F90-8D8C-391A9FC305B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2EB3C94-E4FE-4F90-8D8C-391A9FC305B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2EB3C94-E4FE-4F90-8D8C-391A9FC305B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2EB3C94-E4FE-4F90-8D8C-391A9FC305B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07D2CF00-AC25-4178-8EEF-A3EDF92A4988}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07D2CF00-AC25-4178-8EEF-A3EDF92A4988}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07D2CF00-AC25-4178-8EEF-A3EDF92A4988}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07D2CF00-AC25-4178-8EEF-A3EDF92A4988}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{07D2CF00-AC25-4178-8EEF-A3EDF92A4988} = {EC6EEDE1-3D68-499E-8B8B-C565CE0E7302}
+	EndGlobalSection
+EndGlobal

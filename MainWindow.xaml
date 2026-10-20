@@ -1,0 +1,174 @@
+<Window x:Class="RustOptimizer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        Title="Rust Optimizer"
+        Width="1360" Height="860" MinWidth="1220" MinHeight="750"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="CanResize"
+        WindowStartupLocation="CenterScreen">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0"
+                      ResizeBorderThickness="6"
+                      GlassFrameThickness="0"
+                      CornerRadius="0" />
+    </WindowChrome.WindowChrome>
+
+    <Window.Resources>
+        <Style x:Key="TitleBarIconButton" TargetType="Button">
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Foreground" Value="#8A8A8E" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#1FFFFFFF" />
+                                <Setter Property="Foreground" Value="#FFFFFF" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.3" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CloseIconButton" TargetType="Button" BasedOn="{StaticResource TitleBarIconButton}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#E54D2E" />
+                    <Setter Property="Foreground" Value="#FFFFFF" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Border x:Name="MainWindowBorder"
+            Background="#09090D"
+            BorderBrush="#1AFFFFFF"
+            BorderThickness="1"
+            CornerRadius="20"
+            ClipToBounds="True">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="44" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- Custom Title Bar -->
+            <Border x:Name="TitleBar"
+                    Grid.Row="0"
+                    Background="#09090D"
+                    MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+                <Grid Margin="16,0,12,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Left: Back / Forward Navigation -->
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                        <Button x:Name="PreviousPageButton"
+                                Style="{StaticResource TitleBarIconButton}"
+                                IsEnabled="False"
+                                ToolTip="Назад"
+                                Click="PreviousPageButton_Click">
+                            <Path Data="M 10,3 L 4,9 L 10,15"
+                                  Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                  StrokeThickness="1.8"
+                                  StrokeStartLineCap="Round"
+                                  StrokeEndLineCap="Round"
+                                  StrokeLineJoin="Round" />
+                        </Button>
+                        <Button x:Name="NextPageButton"
+                                Style="{StaticResource TitleBarIconButton}"
+                                IsEnabled="False"
+                                Margin="4,0,0,0"
+                                ToolTip="Вперёд"
+                                Click="NextPageButton_Click">
+                            <Path Data="M 5,3 L 11,9 L 5,15"
+                                  Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                  StrokeThickness="1.8"
+                                  StrokeStartLineCap="Round"
+                                  StrokeEndLineCap="Round"
+                                  StrokeLineJoin="Round" />
+                        </Button>
+                    </StackPanel>
+
+                    <!-- Center: Current Section Title -->
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                IsHitTestVisible="False">
+                        <TextBlock Text="Rust Optimizer"
+                                   Foreground="#8A8A8E"
+                                   FontSize="13"
+                                   FontWeight="SemiBold"
+                                   VerticalAlignment="Center" />
+                        <TextBlock Text=" — "
+                                   Foreground="#525256"
+                                   FontSize="13"
+                                   VerticalAlignment="Center" />
+                        <TextBlock x:Name="SectionTitleText"
+                                   Text="Твики"
+                                   Foreground="#D4D4D8"
+                                   FontSize="13"
+                                   FontWeight="Medium"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+
+                    <!-- Right: Window Controls -->
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                        <Button Style="{StaticResource TitleBarIconButton}"
+                                ToolTip="Свернуть"
+                                Click="MinimizeButton_Click">
+                            <Path Data="M 3,8 L 13,8"
+                                  Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                  StrokeThickness="1.6"
+                                  StrokeStartLineCap="Round"
+                                  StrokeEndLineCap="Round" />
+                        </Button>
+                        <Button Style="{StaticResource TitleBarIconButton}"
+                                Margin="4,0,0,0"
+                                ToolTip="Развернуть"
+                                Click="MaximizeButton_Click">
+                            <Rectangle Width="10" Height="10"
+                                       RadiusX="1.5" RadiusY="1.5"
+                                       Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                       StrokeThickness="1.6" />
+                        </Button>
+                        <Button Style="{StaticResource CloseIconButton}"
+                                Margin="4,0,0,0"
+                                ToolTip="Закрыть"
+                                Click="CloseButton_Click">
+                            <Path Data="M 4,4 L 12,12 M 12,4 L 4,12"
+                                  Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                  StrokeThickness="1.7"
+                                  StrokeStartLineCap="Round"
+                                  StrokeEndLineCap="Round" />
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Original Vue/WebView2 Frontend -->
+            <Grid Grid.Row="1" Background="#09090D">
+                <wv2:WebView2 x:Name="webView" />
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

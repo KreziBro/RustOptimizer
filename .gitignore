@@ -1,0 +1,23 @@
+## Build and Output
+[Bb]in/
+[Oo]bj/
+Publish_Portable/
+publish/
+
+## IDE and Editor files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.idea/
+.vscode/
+
+## Runtime cache and logs
+WebView2Data/
+logs/
+*.log
+
+## OS Files
+.DS_Store
+Thumbs.db

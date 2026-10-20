@@ -1,0 +1,1 @@
+import{_ as e,c as o,o as t}from"./index-NM3WgKuc.js";const s={},i={width:"48",height:"48",viewBox:"0 0 48 48",fill:"none",xmlns:"http://www.w3.org/2000/svg"};function l(r,C){return t(),o("svg",i,[])}const c=e(s,[["render",l]]);export{c as m};
