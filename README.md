@@ -81,6 +81,11 @@ dotnet publish RustOptimizerCore.csproj -c Release -r win-x64 --self-contained t
 * **Аппаратное взаимодействие**: `Mixaill.HwInfo.D3DKMT` (Win32 D3DKMT interop) для мониторинга видеоадаптеров и управления HAGS
 * **Бекапы**: атомарная сериализация снимков реестра и файлов конфигураций в JSON
 
+## Сообщество и поддержка
+
+* Официальный Telegram канал разработчика: https://t.me/KreziBro_dev
+* Поддержать развитие проекта на платформе Ko-fi: https://ko-fi.com/krejzibro
+
 ## Лицензия
 
 Распространяется под лицензией MIT. Подробности в файле [LICENSE](LICENSE).
